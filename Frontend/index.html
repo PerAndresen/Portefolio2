@@ -3,6 +3,7 @@
         Index page for Portefolio2
         <meta charset="UTF-8">
         <meta name="language" content="English, EN">
+        <script src="fullstack.js"></script>
 
     </head>
 
@@ -14,19 +15,19 @@
                     <h1>Arsenal Football Club</h1>
                     <p class="price">2 billion $</p>
                     <p>Lorem Ipsum. Lorem Ipsum</p>
-                    <p><button>Add to cart</button></p>
+                    <p><button onclick="addToCart()">Add to cart</button></p>
                 </div>
-                <div class="product">
+                <div class="product" id="Manutd">
                     <h1>Manchester United</h1>
                     <p class="price">3 billion $</p>
                     <p>Lorem Ipsum. Lorem Ipsum</p>
-                    <p><button>Add to cart</button></p>
+                    <p><button onclick="addToCart()">Add to cart</button></p>
                 </div>
-                <div class="product">
+                <div class="product" id="Mancity">
                     <h1>Manchester City</h1>
                     <p class="price">10 billion $</p>
                     <p>Lorem Ipsum. Lorem Ipsum</p>
-                    <p><button>Add to cart</button></p>
+                    <p><button onclick="addToCart()">Add to cart</button></p>
                 </div>
 
 
@@ -35,12 +36,18 @@
                         <fieldset>
                             <legend>Shopping Cart </legend>
                             <label>Item: <input type="text" name="name"></label>
-                            <label>Quantity: <input type="text" name="name"></label>
+                            <label>Quantity: <input type="text" name="data"></label>
 
                             <input type="button" value="Save" onclick="SaveItem()">
                             <input type="button" value="Update" onclick="ChangeItem()">
                             <input type="button" value="Delete" onclick="RemoveItem()">
                         </fieldset>
+                        <div id="itemsInCart">
+                            <h2>Items in Cart</h2>
+                            <table id="listOfItems"></table>
+                            <label><input type="button" value="Clear" onclick="ClearAll()">
+                            *Delete all items from Cart</label>
+                        </div>
                     </form>
                 </div>
 
