@@ -1,6 +1,9 @@
 <html>
     <head>
         Index page for Portefolio2
+        <meta charset="UTF-8">
+        <meta name="language" content="English, EN">
+
     </head>
 
     <body>
@@ -26,7 +29,22 @@
                     <p><button>Add to cart</button></p>
                 </div>
 
-                
+
+                <div class="shoppingcart">
+                    <form name="ShoppingList">
+                        <fieldset>
+                            <legend>Shopping Cart </legend>
+                            <label>Item: <input type="text" name="name"></label>
+                            <label>Quantity: <input type="text" name="name"></label>
+
+                            <input type="button" value="Save" onclick="SaveItem()">
+                            <input type="button" value="Update" onclick="ChangeItem()">
+                            <input type="button" value="Delete" onclick="RemoveItem()">
+                        </fieldset>
+                    </form>
+                </div>
+
+
 
             
     </body>
