@@ -1,0 +1,26 @@
+Framskrittsplan:
+1. Index-page with a list of all products with pictures
+2. Product page: click on a product to get more info and pictures, and see the price
+3. Add to cart/buy button, including visual and actual change in shoppingcart
+4. Proceed to checkout/buy(visible and accessible)
+5. Show the entire shoppingcart with total price, perhaps add some bonuses
+6. Implement functionality for admin-user
+7. Create a docker for database and backend
+
+Frontend:
+1. Create index-page
+2. Create a product page for each product
+3. Create shoppingcart
+4. Create buttons to purchase
+
+Backend:
+1. Create methods to fetch data from database
+2. Create methods to send data to frontend
+3. Create methods to add new products as admin
+4. Add the possibility to see purchase-history
+
+Database:
+1. Create a database(MySQL or MongoDB)
+2. Deploy exampledata into DB
+
+
