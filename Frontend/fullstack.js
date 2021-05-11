@@ -5,7 +5,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 /*IMPORTERER JQUERY*/
 
-function addToCart(){
+function addToCart(product){
     /* 
     Knappfunksjon ved hvert produkt for å legge det til i handlelisten
     Tar inn det som er tilhørende objekt
