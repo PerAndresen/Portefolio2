@@ -12,20 +12,20 @@
             <h1>Webshop</h1>
             <p>List of Products</p>
                 <div class="product" id="product">
-                    <h1>Arsenal Football Club</h1>
-                    <p class="price">2 billion $</p>
+                    <h1 id="productname">Arsenal Football Club</h1>
+                    <p class="price" id="price">2 billion $</p>
                     <p>Lorem Ipsum. Lorem Ipsum</p>
                     <p><button onclick="addToCart()">Add to cart</button></p>
                 </div>
                 <div class="product" id="product">
-                    <h1>Manchester United</h1>
-                    <p class="price">3 billion $</p>
+                    <h1 id="productname">Manchester United</h1>
+                    <p class="price" id="price">3 billion $</p>
                     <p>Lorem Ipsum. Lorem Ipsum</p>
                     <p><button onclick="addToCart()">Add to cart</button></p>
                 </div>
                 <div class="product" id="product">
-                    <h1>Manchester City</h1>
-                    <p class="price">10 billion $</p>
+                    <h1 id="productname">Manchester City</h1>
+                    <p class="price" id="price">10 billion $</p>
                     <p>Lorem Ipsum. Lorem Ipsum</p>
                     <p><button onclick="addToCart()">Add to cart</button></p>
                 </div>
@@ -34,20 +34,26 @@
                 <div class="shoppingcart">
                     <form name="ShoppingList">
                         <fieldset>
-                            <legend>Shopping Cart </legend>
+                            <legend>Shopping Cart</legend>
+                            <!-- EVT for admin
                             <label>Item: <input type="text" name="name"></label>
                             <label>Quantity: <input type="text" name="data"></label>
 
                             <input type="button" value="Save" onclick="SaveItem()">
                             <input type="button" value="Update" onclick="ChangeItem()">
                             <input type="button" value="Delete" onclick="RemoveItem()">
+                            -->
+                            <div id="itemsInCart">
+                                <h2>Items in Cart</h2>
+                                <table id="listOfItems">
+                                <tr><th>Produktnavn</th><th>Antall</th><th>Sum</th></tr>
+                                </table>
+                                <label><input type="button" value="Clear" onclick="ClearAll()">
+                                *Delete all items from Cart</label>
+                            </div>
+
                         </fieldset>
-                        <div id="itemsInCart">
-                            <h2>Items in Cart</h2>
-                            <table id="listOfItems"></table>
-                            <label><input type="button" value="Clear" onclick="ClearAll()">
-                            *Delete all items from Cart</label>
-                        </div>
+                        
                     </form>
                 </div>
 
