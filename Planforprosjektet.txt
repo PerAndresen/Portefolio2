@@ -24,3 +24,5 @@ Database:
 2. Deploy exampledata into DB
 
 
+Ideer:
+1. Lagre handlevognen sin?
