@@ -26,3 +26,6 @@ Database:
 
 Ideer:
 1. Lagre handlevognen sin?
+
+Kilder for JQUERY:
+https://css-tricks.com/practical-use-cases-for-javascripts-closest-method/

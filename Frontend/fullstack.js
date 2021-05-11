@@ -5,15 +5,20 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 /*IMPORTERER JQUERY*/
 
-function addToCart(product){
+function addToCart(){
     /* 
     Knappfunksjon ved hvert produkt for å legge det til i handlelisten
     Tar inn det som er tilhørende objekt
     */
-   /* Får bare inn for første produkt, går det ann å få for de to andre på en enkel måte.*/
-   var currentClass = $(this)
-   let  productname = $(currentClass+".productname").html() 
-   let price = $(".price").html()
+   /* Får bare inn for første produkt, går det ann å få for de to andre på en enkel måte.
+   var thisproduct = document.querySelector("product")
+   var thisproductname = thisproduct.closest("h1")
+   var thisproductname = thisproduct.val
+   console.log(thisproductname)
+   */ 
+   console.log(document.getElementById("product").querySelector("#productname"))
+   let  productname = $("#productname").html() 
+   let price = $("#price").html()
    let quantity = $("#quantity1").val()
    /*let quantity = document.getElementById('') */
    const product ={
@@ -28,15 +33,8 @@ function addToCart(product){
    return $("#listOfItems").append(ut)     
 }
 
-
-
-function SaveItem(){
-
-
-}
-
-function ChangeItem(){
-
+function createProduct(){
+    /*lage en funksjon som lager ett produkt.*/
 }
 
 function RemoveItem(){
