@@ -1,0 +1,6 @@
+Trinn 1:
+Mappe og Filstruktur
+
+Lage databasefil. bestemme oss for type
+
+
