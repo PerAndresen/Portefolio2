@@ -11,9 +11,9 @@
             <h1>Portefolio 2</h1>
             <h1>Webshop</h1>
             <div id = "listofproducts">
-            <p class="listofproducts">List of Products</p>
-                <div class="product" id="product">
-                    <h1 id="productname">Arsenal Football Club</h1>
+            <p class="listofproducts" id="listofproducts">List of Products</p>
+                <div class="product" id="product1">
+                    <h1 id="productname" class="productname">Arsenal Football Club</h1>
                     <img alt="Arsenal FC crest">
                     <p id="price">3000</p>
                     <label for="quantity">Choose a quanity</label>
@@ -38,21 +38,21 @@
                         <option value="4">4</option>
                     </select>
                     <p>Lorem Ipsum. Lorem Ipsum</p>
-                    <p><button onclick="addToCart()" type="button">Add to cart</button></p>
+                    <p><button onclick="addToCart(this)" type="button">Add to cart</button></p>
                 </div>
                 <div class="product" id="product3">
                     <h1 id="productname">Manchester City</h1>
                     <img alt="Man City crest">
                     <p id="price">60000</p>
                     <label for="quantity">Choose a quanity</label>
-                    <select name="quantity" id="quantity3">
+                    <select name="quantity" id="quantity">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select>
                     <p>Lorem Ipsum. Lorem Ipsum</p>
-                    <p><button onclick="addToCart()" type="button">Add to cart</button></p>
+                    <p><button onclick="addToCart(productname,price,quantity)" type="button">Add to cart</button></p>
                 </div>
             </div>
 
