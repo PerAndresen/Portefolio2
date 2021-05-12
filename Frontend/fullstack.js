@@ -5,7 +5,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 /*IMPORTERER JQUERY*/
 
-function addToCart(){
+function addToCart(event){
     /* 
     Knappfunksjon ved hvert produkt for å legge det til i handlelisten
     Tar inn det som er tilhørende objekt
@@ -16,15 +16,20 @@ function addToCart(){
    var thisproductname = thisproduct.val
    console.log(thisproductname)
    */ 
-   console.log(document.getElementById("product").querySelector("#productname"))
-   let  productname = $("#productname").html() 
+    /*parent().find('product').getElementById("#productname")) */
+   /* var that=div */
+   console.log(document.getElementById("listofproducts").getElementsByClassName(".productname"))
+   /*console.log($(that).parent().siblings(".productname").show())
+   /*let  productname = $("#productname").html() 
    let price = $("#price").html()
    let quantity = $("#quantity1").val()
    /*let quantity = document.getElementById('') */
+   var buttonClicked = event.target
+   console.log(buttonClicked.parentElement.child(".productname"))
    const product ={
-       productname: productname,
-       quantity: quantity,
-       price: price,
+       productname: productname.text(),
+       quantity: quantity.text(),
+       price: price.text(),
    }
    /*lagre det som ett produkt, som sendes til APIet?*/
    console.log(product.productname+" "+product.quantity+" "+product.price)
@@ -36,6 +41,7 @@ function addToCart(){
 function createProduct(){
     /*lage en funksjon som lager ett produkt.*/
 }
+
 
 function RemoveItem(){
 
