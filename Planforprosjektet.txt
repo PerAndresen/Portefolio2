@@ -6,6 +6,7 @@ Framskrittsplan:
 5. Show the entire shoppingcart with total price, perhaps add some bonuses
 6. Implement functionality for admin-user
 7. Create a docker for database and backend
+8. Kan adde en varebeholdning slik at ting kan være tomt, og når man kjøper en vare forsvinner en fra lageret
 
 Frontend:
 1. Create index-page

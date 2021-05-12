@@ -6,10 +6,10 @@ app.config["DEBUG"] = True
 base = 'http://127.0.0.1:5000/webshop/'
 
 class Product:
-    def __init__(self, name, price, id):
+    def __init__(self, name, price, product_id):
         self.name = name
         self.price = price
-        self.id = id
+        self.product_id = product_id
 
 @app.route(base + 'products/get/<product_id>', methods=['GET'])
 def getProduct(product_id):
