@@ -1,5 +1,7 @@
 import flask
 from pymongo import MongoClient
+import jsonpickle
+
 
 # Creating the "app" with flask, to be able to use routes
 app = flask.Flask(__name__)
@@ -28,7 +30,14 @@ def getProduct(product_id):
     return None
 
 # Method for adding a product to the database
-@app.route(base, 'products/add/<product_id>', methods=['POST', 'GET'])
-def addProduct(product_id):
-    return None
+@app.route(base, 'products/add/<name>/<price>/<product_id>', methods=['POST', 'GET'])
+def addProduct(name, price, product_id):
+    #newProduct = Product(name, price, product_id)
+    # Can use jsonpickle here
+    product = {
+        'Name':name,
+        'Price':price,
+        'Product ID':product_id
+    }
+    
 
