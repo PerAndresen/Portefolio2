@@ -30,3 +30,8 @@ Ideer:
 
 Kilder for JQUERY:
 https://css-tricks.com/practical-use-cases-for-javascripts-closest-method/
+
+Dependencies: 
+- pymongo
+- jsonpickle
+
