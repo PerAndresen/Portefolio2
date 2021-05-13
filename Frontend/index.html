@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="language" content="English, EN">
         <script src="fullstack.js"></script>
+        <link rel="stylesheet" href="portfolio2.css">
 
     </head>
 
@@ -14,10 +15,10 @@
             <h1 class="listofproducts">List of Products</h1>
                 <div class="product">
                     <fieldset>
-                    <span class="productname">Arsenal Football Club</span>
+                    <span class="productname">Banana</span>
                     <br>
                     <br>
-                    <img alt="Arsenal FC crest">
+                    <img alt="Picture of a banana" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg">
                     <br>
                     <br>
                     <span class="productprice">3000</span>
@@ -38,10 +39,10 @@
                 <br>
                 <div class="product">
                     <fieldset>
-                    <span class="productname">Manchester United</span>
+                    <span class="productname">Apple</span>
                     <br>
                     <br>
-                    <img alt="Man Utd crest">
+                    <img alt="Picture of an apple">
                     <br>
                     <br>
                     <span class="productprice">50000</span>
@@ -62,10 +63,10 @@
                 <br>
                 <div class="product">
                     <fieldset>
-                    <span class="productname">Manchester City</span>
+                    <span class="productname">Orange</span>
                     <br>
                     <br>
-                    <img alt="Man City crest">
+                    <img alt="Picture of an Orange">
                     <br>
                     <br>
                     <span class="productprice">60000</span>
@@ -100,12 +101,17 @@
                             <div id="itemsInCart">
                                 <h2>Items in Cart</h2>
                                 <table id="listOfItemsHeaders">
-                                <tr><th>Produktnavn</th><th>Antall</th><th>Sum</th></tr>
+                                <tr><th>Product</th><th>Quanity</th><th>Sum</th></tr>
                                 </table>
                                 <table id="listOfItems" class="list-of-items">
                                 </table>
-                                <label><input type="button" value="Clear" class="clear-items-button">
-                                *Delete all items from Cart</label>
+                                <strong class="total-title">Total</strong>
+                                <span class="total-sum">$0</span> 
+                                <br>
+                                <br>
+                                <label><input type="button" value="Clear Cart" class="clear-items-button">
+                                </label>
+                                <label><input type="button" value="Proceed to checkout" class="checkout-button">
                             </div>
 
                         </fieldset>

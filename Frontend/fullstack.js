@@ -69,3 +69,17 @@ function clearCart(event){
         listofitemsincart.removeChild(listofitemsincart.firstChild)
     }
 }
+
+function sumCart(event){
+
+}
+
+function adminAddProduct(){
+    /*Knappefunksjon som kun skal være tilgjengelig for admin
+    Som legger til ett nytt produkt på listen
+    Requirements for det som blir lagt til:
+    Produktnavn, Kort beskrivelse, lang beskrivelse, photo, ?pris?
+    Setter inn ett stockbilde hvis ingenting blir providet
+    Da må knappene være usynlige vanligvis, 
+    */
+}
