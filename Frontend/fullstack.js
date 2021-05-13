@@ -17,41 +17,8 @@ function ready(){
         button.addEventListener('click', addToCartClicked)
     }
 
-    var clearItemsbutton = document.getElementsByClassName('clear-items-button')
-    clearItemsbutton.addEventListener('click', clearCart)
+    document.getElementsByClassName('clear-items-button')[0].addEventListener('click', clearCart)
 
-}
-
-
-function addToCart(){
-    /* 
-    Knappfunksjon ved hvert produkt for å legge det til i handlelisten
-    Tar inn det som er tilhørende objekt
-    */
-   /* Får bare inn for første produkt, går det ann å få for de to andre på en enkel måte.
-   var thisproduct = document.querySelector("product")
-   var thisproductname = thisproduct.closest("h1")
-   var thisproductname = thisproduct.val
-   console.log(thisproductname)
-   */ 
-    /*parent().find('product').getElementById("#productname")) */
-   /* var that=div */
-   console.log(document.getElementById("listofproducts").getElementsByClassName(".productname"))
-   /*console.log($(that).parent().siblings(".productname").show())
-   /*let  productname = $("#productname").html() 
-   let price = $("#price").html()
-   let quantity = $("#quantity1").val()
-   /*let quantity = document.getElementById('') */
-   const product ={
-       productname: productname.text(),
-       quantity: quantity.text(),
-       price: price.text(),
-   }
-   /*lagre det som ett produkt, som sendes til APIet?*/
-   console.log(product.productname+" "+product.quantity+" "+product.price)
-   let sum= product.price * product.quantity
-   let ut = "<tr><td>"+ product.productname +"</td><td>" + product.quantity + "</td><td>" + sum + "</td>"
-   return $("#listOfItems").append(ut)     
 }
 
 function addToCartClicked(event){
@@ -96,5 +63,9 @@ function clearCart(event){
     /* Sletter alt fra handlelisten
     kaller på apiet?
     Tømmer listen*/
-    return null
+    alert('Removing all products from cart')
+    var listofitemsincart = document.getElementsByClassName('list-of-items')[0]
+    while (listofitemsincart.hasChildNodes()){
+        listofitemsincart.removeChild(listofitemsincart.firstChild)
+    }
 }
