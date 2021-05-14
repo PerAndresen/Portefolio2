@@ -41,11 +41,18 @@ function addToCartClicked(event){
         productquantity: quantity
     }
     let sum= product.productprice * product.productquantity
-    let ut = '<tr><td class="product-name-table">'+ product.productname +'</td><td class="product-quantity-table">'+ product.productquantity + '</td><td class="product-sum-table">' + sum + '</td>'
-    return $("#listOfItems").append(ut) 
+    addItemToCart(productname, productquantity, sum)
+    sumCart()
 }
 
-
+function addItemToCart(productname, productquantity, sum) {
+    var cartLinje = document.createElement('div')
+    cartLinje.classList.add('cart-row')
+    var cartitems = document.getElementsByClassName('list-of-items')[0]  
+    var ut = '<span class="product-name-table">'+productname+'</span>    <span class="product-quantity-table">'+productquantity+'</span>    <span class="product-sum-table">'+sum+'</span>'
+    cartLinje.innerHTML = ut
+    cartitems.append(cartLinje)
+}
 
 
 
@@ -68,18 +75,22 @@ function clearCart(event){
     while (listofitemsincart.hasChildNodes()){
         listofitemsincart.removeChild(listofitemsincart.firstChild)
     }
+    sumCart()
 }
 
 function sumCart(){
-    var listofitemsincart = document.getElementsByClassName('list-of-items')[0]
-    var cartRows = listofitemsincart.getElementsByClassName('')
+    var listofitemsincart = document.getElementsByClassName('list-of-items')[0]    
+    var lineInCart = listofitemsincart.getElementsByClassName('cart-row')
     var total = 0
-    for(var i = 0; i< listofitemsincart.length; i++){
-        console.log(listofitemsincart.getElementsByClassName('product-sum-table')[0])
-        sum = listofitemsincart.getElementsByClassName('product-sum-table').value
-        total = total + sum
+    for(var i = 0; i< lineInCart.length; i++){
+        var iteminlist = lineInCart[i]
+        var productsum = iteminlist.getElementsByClassName('product-sum-table')[0]
+        console.log(productsum.innerText)
+        var price= parseFloat(productsum.innerText)
+        total = total + price
     }
-    document.getElementsByClassName('total-sum').innerText ='$' + total
+    total = Math.round(total * 100) / 100
+    document.getElementsByClassName('total-sum')[0].innerText = '$' + total
 }
 
 function adminAddProduct(){
