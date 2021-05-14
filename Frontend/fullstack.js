@@ -41,7 +41,7 @@ function addToCartClicked(event){
         productquantity: quantity
     }
     let sum= product.productprice * product.productquantity
-    let ut = "<tr><td>"+ product.productname +"</td><td>" + product.productquantity + "</td><td>" + sum + "</td>"
+    let ut = '<tr><td class="product-name-table">'+ product.productname +'</td><td class="product-quantity-table">'+ product.productquantity + '</td><td class="product-sum-table">' + sum + '</td>'
     return $("#listOfItems").append(ut) 
 }
 
@@ -70,8 +70,16 @@ function clearCart(event){
     }
 }
 
-function sumCart(event){
-
+function sumCart(){
+    var listofitemsincart = document.getElementsByClassName('list-of-items')[0]
+    var cartRows = listofitemsincart.getElementsByClassName('')
+    var total = 0
+    for(var i = 0; i< listofitemsincart.length; i++){
+        console.log(listofitemsincart.getElementsByClassName('product-sum-table')[0])
+        sum = listofitemsincart.getElementsByClassName('product-sum-table').value
+        total = total + sum
+    }
+    document.getElementsByClassName('total-sum').innerText ='$' + total
 }
 
 function adminAddProduct(){
