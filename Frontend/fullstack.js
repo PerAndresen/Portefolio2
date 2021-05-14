@@ -74,17 +74,49 @@ function createProductButton(event){
        var productname = prompt("Please enter a product","")
        var price = prompt("Please enter a price","")
        var description = prompt("Please enter description: ","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non sollicitudin eros. Nunc ut augue lacinia, ultrices ipsum vel, viverra.")
-       var picture = 
+       var picturesrc = prompt("Please enter an Image source of the product","https://image.sciencenorway.no/1438480.jpg?imageId=1438480&panow=0&panoh=0&panox=0&panoy=0&heightw=0&heighth=0&heightx=0&heighty=0&width=1200&height=630" )
        console.log(productname, price, description)
    }
-
-
-}
-
-function addProduct(productname, productprice, productquantity){
-
+   newProduct = new Product(productname,price,description,picturesrc)
+   addProduct(newProduct)
+   ready()
 
 }
+
+function addProduct(Product){
+    var newProduct =  document.createElement('div')
+    newProduct.classList.add('product')
+    var listofproducts = document.getElementsByClassName('new-products')[0]
+    var html = `
+    <fieldset>
+    <span class="productname">${Product.productname}</span>
+    <br>
+    <br>
+    <button type="button" class="btn remove-product-button">Remove product</button>
+    <img alt="Picture of the Fruit" src="${Product.productImgSource}">
+    <br>
+    <br>
+    <p>${Product.productdescription}</p>
+    <br>
+    <br>
+    <span>Price for product:  </span><span class="productprice">${Product.productprice}</span>
+    <br>
+    <br>
+    <label for="quantity">Choose a quanity</label>
+    <select name="quantity" class="quantity">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+    <button type="button" class="btn shop-item-button">Add to cart</button>
+    </fieldset>
+`
+    newProduct.innerHTML = html
+    console.log(newProduct)
+    listofproducts.append(newProduct)
+}
+
 
 function addImage(){
 
@@ -135,4 +167,17 @@ function adminAddProduct(){
     Setter inn ett stockbilde hvis ingenting blir providet
     Da må knappene være usynlige vanligvis, 
     */
+}
+
+/*Constructor for Product*/
+
+function Product(productname, productprice, productdescription, productImgSource){
+    this.productname = productname
+    this.productprice = productprice
+    this.description = productdescription
+    this.productImgSource = productImgSource
+}
+
+productInn={
+
 }
