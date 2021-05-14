@@ -25,6 +25,8 @@ function ready(){
         button.addEventListener('click', RemoveItem)
     }
 
+    document.getElementsByClassName('add-product-button')[0].addEventListener('click', createProductButton)
+
 }
 
 function addToCartClicked(event){
@@ -63,8 +65,31 @@ function addItemToCart(productname, productquantity, sum) {
 
 
 
-function createProduct(){
-    /*lage en funksjon som lager ett produkt.*/
+function createProductButton(event){
+    /*lage en funksjon som lager ett produkt.
+     Trykker på en knapp, så dukker det opp ett input vindu. Med input for produkt, pris, beskrivelse og bilde. 
+     Skal også være hidden, kun synlig for admin
+    */
+   if(event){
+       var productname = prompt("Please enter a product","")
+       var price = prompt("Please enter a price","")
+       var description = prompt("Please enter description: ","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non sollicitudin eros. Nunc ut augue lacinia, ultrices ipsum vel, viverra.")
+       var picture = 
+       console.log(productname, price, description)
+   }
+
+
+}
+
+function addProduct(productname, productprice, productquantity){
+
+
+}
+
+function addImage(){
+
+    
+
 }
 
 
