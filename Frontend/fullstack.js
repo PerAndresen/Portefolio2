@@ -18,6 +18,12 @@ function ready(){
     }
 
     document.getElementsByClassName('clear-items-button')[0].addEventListener('click', clearCart)
+    
+    var removeProductButtons = document.getElementsByClassName('remove-product-button')
+    for(var i = 0; i <removeProductButtons.length; i++){
+        var button = removeProductButtons[i]
+        button.addEventListener('click', RemoveItem)
+    }
 
 }
 
@@ -62,8 +68,11 @@ function createProduct(){
 }
 
 
-function RemoveItem(){
-    /* ha en removeknapp ved hvert item som dukker opp i listen*/
+function RemoveItem(event){
+    /* ha en removeknapp ved hvert produkt, som admin har tilgjengelig*/
+    var button = event.target
+    var productin = button.parentElement.parentElement
+    $(productin).remove();
 }
 
 function clearCart(event){
