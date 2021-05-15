@@ -10,14 +10,15 @@
 
     <body>
             <h1>Portefolio 2</h1>
-            <h1>Webshop</h1>
-            <div id = "listofproducts">
-            <h1 class="listofproducts">List of Products</h1>
+            <h1>Webshop</h1>            <button type="button" class="btn add-product-button">Add Product as admin</button>
+            <div id = "list-of-products">
+                <h1 class="list-of-products-header">List of Products</h1>
                 <div class="product">
                     <fieldset>
                     <span class="productname">Banana</span>
                     <br>
                     <br>
+                    <button type="button" class="btn remove-product-button">Remove product</button> <!--If we want the admin to be able to delete products, can create a funtion.-->
                     <img alt="Picture of a banana" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg">
                     <img src='' id='bananaPopUp'>
                     <br>
@@ -45,6 +46,7 @@
                     <span class="productname">Apple</span>
                     <br>
                     <br>
+                    <button type="button" class="btn remove-product-button">Remove product</button>
                     <img alt="Picture of an apple" src="https://www.applesfromny.com/wp-content/uploads/2020/05/Jonagold_NYAS-Apples2.png">
                     <br>
                     <br>
@@ -72,6 +74,7 @@
                     <span class="productname">Orange</span>
                     <br>
                     <br>
+                    <button type="button" class="btn remove-product-button">Remove product</button>
                     <img alt="Picture of an Orange" src="https://riviste.newbusinessmedia.it/wp-content/uploads/sites/27/2013/12/Fotolia_11313277_M.jpg">
                     <br>
                     <br>
@@ -91,6 +94,10 @@
                     <button type="button" class="btn shop-item-button">Add to cart</button>
                     </fieldset>
                 </div>
+                <br>
+                <br>
+                <div class="new-products product">
+                </div>
             </div>
 
 
@@ -108,13 +115,15 @@
                             -->
                             <div id="itemsInCart">
                                 <h2>Items in Cart</h2>
-                                <table id="listOfItemsHeaders">
-                                <tr><th>Product</th><th>Quanity</th><th>Sum</th></tr>
-                                </table>
-                                <table id="listOfItems" class="list-of-items">
-                                </table>
-                                <strong class="total-title">Total</strong>
-                                <span class="total-sum">$0</span> 
+                                <div class ="list-of-items-headers">
+                                    <span>Product</span>  <span>Quantity</span>  <span>Sum</span>
+                                </div>
+                                <div class="list-of-items">
+                                </div>
+                                <div class="cart-total">
+                                    <strong class="total-title">Total</strong>
+                                    <span class="total-sum">$0</span>
+                                </div>     
                                 <br>
                                 <br>
                                 <label><input type="button" value="Clear Cart" class="clear-items-button">
