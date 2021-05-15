@@ -18,22 +18,24 @@ base = 'http://127.0.0.1:5000/webshop/'
 
 # Product class
 class Product:
-    def __init__(self, name, price, product_id):
+    def __init__(self, name, price, product_id, image):
         self.name = name
         self.price = price
         self.product_id = product_id
+        self.image = image
 
 # Method for getting a product from the database 
 @app.route(base + 'products/get/<product_id>', methods=['GET'])
 def getProduct(product_id):
+    # Finds and returns a document with specidic product_id
     product = collection.find({'product_id':product_id})
     print('Returned product: ', product)
     return product
 
 # Method for adding a product to the database
-@app.route(base, 'products/add/<name>/<price>/<product_id>', methods=['POST', 'GET'])
-def addProduct(name, price, product_id):
-    newProduct = Product(name, price, product_id)
+@app.route(base, 'products/add/<name>/<price>/<product_id>/<image>', methods=['POST', 'GET'])
+def addProduct(name, price, product_id, image):
+    newProduct = Product(name, price, product_id, image)
     print('Object product: ', newProduct)
     # Parsing the Product-Object into JSON with jsonpickle -> to be able to insert it into MongoDB
     productJSON = jsonpickle.encode(newProduct, unpicklable=False)
