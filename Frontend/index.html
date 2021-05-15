@@ -3,9 +3,9 @@
         Index page for Portefolio2
         <meta charset="UTF-8">
         <meta name="language" content="English, EN">
-        <script src="fullstack.js"></script>
-        <link rel="stylesheet" href="portfolio2.css">
-
+        <link href="portfolio2.css" rel="stylesheet">
+        <script defer src="fullstack.js"></script>
+       
     </head>
 
     <body>
@@ -19,8 +19,31 @@
                     <br>
                     <br>
                     <button type="button" class="btn remove-product-button">Remove product</button> <!--If we want the admin to be able to delete products, can create a funtion.-->
-                    <img alt="Picture of a banana" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg">
-                    <img src='' id='bananaPopUp'>
+                    
+                    <img id='bananaId' alt="Picture of a banana" src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg">
+                    <!--Her prøver jeg å lage en modal-->
+                    <button data-modal-target='#modal'>Show more info</button>
+                    <div class='modal' id='modal'>
+                        <div class='modal-header'>
+                            <div class='title'>Example modal</div>
+                            <button data-close-button class='close-button'>&times;</button>
+                        </div>
+                        <div class='modal-body'>
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                             Fuga pariatur consequuntur consequatur aliquid deserunt 
+                             aut perferendis eius ea accusamus magni possimus labore 
+                             optio voluptatum, tempore nobis odit error. Delectus, 
+                             veritatis aliquam sit placeat in minus veniam eligendi 
+                             nihil ipsam earum totam, consequatur tempora nam cum 
+                             magni laboriosam accusantium voluptas quisquam beatae 
+                             debitis exercitationem. Esse temporibus quia nostrum, 
+                             quis quidem tempore facilis expedita sint voluptatum 
+                             mollitia, provident nisi! Ea id mollitia quos molestias, 
+                             magni ipsam minus natus commodi molestiae ab libero.
+                        </div>
+                    </div>
+                    <div id='overlay'></div>
+                    <!--<img src='' id='bananaPopUp'> MODAL TRY ENDS HERE-->
                     <br>
                     <br>
                     <p>Lorem Ipsum. Lorem Ipsum</p>
@@ -134,10 +157,6 @@
                         </fieldset>
                         
                     </form>
-                </div>
-
-
-
-            
+                </div>            
     </body>
 </html>
