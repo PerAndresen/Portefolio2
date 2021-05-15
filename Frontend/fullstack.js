@@ -143,7 +143,28 @@ function addProduct(Product){
     <br>
     <br>
     <button type="button" class="btn remove-product-button">Remove product</button>
-    <img alt="Picture of the Fruit" src="${Product.productImgSource}">
+    <button></button>
+    <img data-modal-target="#modal3" alt="Picture of ${Product.productname}" src="${Product.productImgSource}">
+    <div class='modal' id='modal3'>
+        <div class='modal-header'>
+            <div class='title'>${Product.productname}</div>
+            <button data-close-button class='close-button'>&times;</button>
+        </div>
+        <div class='modal-body'>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Fuga pariatur consequuntur consequatur aliquid deserunt 
+                aut perferendis eius ea accusamus magni possimus labore 
+                optio voluptatum, tempore nobis odit error. Delectus, 
+                veritatis aliquam sit placeat in minus veniam eligendi 
+                nihil ipsam earum totam, consequatur tempora nam cum 
+                magni laboriosam accusantium voluptas quisquam beatae 
+                debitis exercitationem. Esse temporibus quia nostrum, 
+                quis quidem tempore facilis expedita sint voluptatum 
+                mollitia, provident nisi! Ea id mollitia quos molestias, 
+                magni ipsam minus natus commodi molestiae ab libero.
+        </div>
+    </div>
+    <div id='overlay'></div>
     <br>
     <br>
     <p>${Product.productdescription}</p>
@@ -224,7 +245,7 @@ function adminAddProduct(){
 function Product(productname, productprice, productdescription, productImgSource){
     this.productname = productname
     this.productprice = productprice
-    this.description = productdescription
+    this.productdescription = productdescription
     this.productImgSource = productImgSource
 }
 
