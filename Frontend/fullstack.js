@@ -26,6 +26,7 @@ function ready(){
     }
 
     document.getElementsByClassName('add-product-button')[0].addEventListener('click', createProductButton)
+    document.getElementsByClassName('admin-button')[0].addEventListener('click', loginAdmin)
 
 }
 
@@ -130,7 +131,6 @@ function createProductButton(event){
    newProduct = new Product(productname,price,description,picturesrc)
    addProduct(newProduct)
    ready()
-
 }
 
 function addProduct(Product){
@@ -186,15 +186,8 @@ function addProduct(Product){
     newProduct.innerHTML = html
     console.log(newProduct)
     listofproducts.append(newProduct)
+    productArray.push(Product)
 }
-
-
-function addImage(){
-
-    
-
-}
-
 
 function RemoveItem(event){
     /* ha en removeknapp ved hvert produkt, som admin har tilgjengelig*/
@@ -203,7 +196,7 @@ function RemoveItem(event){
     $(productin).remove();
 }
 
-function clearCart(event){
+function clearCart(){
     /* Sletter alt fra handlelisten
     kaller på apiet?
     Tømmer listen*/
@@ -240,6 +233,49 @@ function adminAddProduct(){
     */
 }
 
+function makeVisible(){
+    /* Makes the buttons visible when logged in as admin*/
+    document.getElementsByClassName('add-product-button')[0].style.visibility = "visible"
+    for(var i = 0; i < 3; i++){
+        document.getElementsByClassName('remove-product-button')[i].style.visibility = "visible"
+    }
+    
+}
+
+function makeInvisible(){
+    /* Makes the buttons invisible when logged in as user*/
+    document.getElementsByClassName('add-product-button')[0].style.visibility = "hidden"
+    for(var i = 0; i < 3; i++){
+        document.getElementsByClassName('remove-product-button')[i].style.visibility = "hidden"
+    }
+    
+}
+
+
+
+
+
+function loginAdmin(event){
+    if(event){
+        if(!loggedIn){
+            makeVisible()
+            var nyTekst="Log out as Admin"
+            document.querySelector('#admin-button').innerHTML=nyTekst   
+            var loggedIn = true
+            console.log("Logged in")
+            return loggedIn
+        }
+        else {
+            ready()
+            var nyTekst="Log in as Admin"
+            document.querySelector('#admin-button').innerHTML=nyTekst
+            console.log("Logged out")
+        }
+    }
+    
+    
+}
+
 /*Constructor for Product*/
 
 function Product(productname, productprice, productdescription, productImgSource){
@@ -249,6 +285,4 @@ function Product(productname, productprice, productdescription, productImgSource
     this.productImgSource = productImgSource
 }
 
-productInn={
-
-}
+var productArray = []

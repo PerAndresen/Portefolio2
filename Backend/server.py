@@ -44,4 +44,4 @@ def addProduct(name, price, product_id, image):
     collection.insert_one(productJSON)
 
     
-
+app.run()
