@@ -44,7 +44,7 @@ def getProduct(product_id):
     return product
 
 # Method for adding a product to the database
-@app.route('/webshop/products/add/<name>/<price>/<description>/<image>', methods=['POST', 'GET'])
+@app.route('/webshop/products/add/<name>/<price>/<description>/<image>', methods=['GET', 'POST'])
 def addProduct(name, price, description, image):
     newProduct = Product(name, price, description, image)
     print('Object product: ', newProduct)
@@ -55,11 +55,11 @@ def addProduct(name, price, description, image):
     print('JSON inserted: ', jsonDict)
     # Inserting the JSON product into MongoDB
     collection.insert_one(jsonDict)
-#nextId = {"_id": get_sequence('Food')}
+    #nextId = {"_id": get_sequence('Food')}
+
+app.run()
 
 
-
-
-print('SJEKKER OM PROGRAMMET FUNKER SOM DET SKAL NÅ')
-addProduct('TestProdukt',  69, 'Dette er et testprodukt for å teste om programmet funker', 'https://www.applesfromny.com/wp-content/uploads/2020/05/Jonagold_NYAS-Apples2.png')
+#print('SJEKKER OM PROGRAMMET FUNKER SOM DET SKAL NÅ')
+#addProduct('TestProdukt',  69, 'Dette er et testprodukt for å teste om programmet funker', 'https://www.applesfromny.com/wp-content/uploads/2020/05/Jonagold_NYAS-Apples2.png')
 # {"_id": get_sequence("Food")}

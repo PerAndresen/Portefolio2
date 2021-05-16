@@ -128,6 +128,14 @@ function createProductButton(event){
        console.log(productname, price, description)
    }
    newProduct = new Product(productname,price,description,picturesrc)
+   fetch('http://127.0.0.1:5000/webshop/products/add/<name>/<price>/<description>/<image>', {
+    method: 'POST',
+    body: JSON.stringify(newProduct),
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+   })
+   .then(response => response.json())
+   .then(json => console.log(json))
+   .catch(err => console.log(err))
    addProduct(newProduct)
    ready()
 }
