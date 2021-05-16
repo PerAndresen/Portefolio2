@@ -92,7 +92,6 @@ function closeModal(modal) {
 
 // Function to give more pictures/information about a product(get from database)
 function showMoreInformation() {
-
     console.log('About to fetch information about a product');
     fetch('http://127.0.0.1:5000/webshop/products/get/<product_id>').then(response => {
             console.log(response);
