@@ -50,12 +50,13 @@ def homepage(path):
 
 
 # Method for getting a product from the database 
-@app.route('/webshop/products/get/<product_id>', methods=['GET'])
+@app.route('/webshop/get/<product_id>', methods=['GET'])
 def getProduct(product_id):
     # Finds and returns a document with specidic product_id
     return None
 
-@app.route('/webshop/products/getall', methods=['GET'])
+
+@app.route('/webshop/getall', methods=['GET'])
 def getAll():    
     cursor = db.cursor()
     cursor.execute('SELECT * FROM products')
@@ -63,12 +64,18 @@ def getAll():
     return flask.jsonify(result)   
     
 
+#Deleting product from the sql database    
+@app.route('/webshop/delete/<product_id>', methods=['GET', 'DELETE'])
+def deleteProduct(product_id):
+    cursor = db.cursor()
+    cursor.execute('DELETE FROM products WHERE productid={}'.format(product_id))
+    print(getAll())
+    return getAll()
+
 # Method for adding a product to the database
 @app.route('/webshop/products/add/<name>/<price>/<description>/<image>', methods=['GET', 'POST'])
 def addProduct(name, price, description, image):
    return None
-
-
 
 
 if __name__ == '__main__':
