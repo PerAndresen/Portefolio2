@@ -29,10 +29,10 @@ cursor.execute('SELECT * FROM products')
 result = cursor.fetchall()
 
 print(result)
-
+"""
 for id, name, price, quantity, img in result:
     print("ID: {}, Name: {}, Price: {}, Quantity: {}, Productimg: {}".format(id,name, price, quantity, img))
-
+"""
 # Product class
 class Product:
     def __init__(self, name, price, description, image):
@@ -75,12 +75,13 @@ def deleteProduct(product_id):
 @app.route('/webshop/add/<name>/<price>/<quantity>/<description>/<image>', methods=['GET', 'POST'])
 def addProduct(name, price, quantity, description, image):
     cursor = db.cursor()
-    sql = 'INSERT INTO products (name, price, quantity, description, image) VALUES (%s, %s, %s, %s, %s)'
+    sql = 'INSERT INTO products (productname, productprice, productquantity, productdescription, productimage) VALUES (%s, %s, %s, %s, %s)'
     val = (name, price, quantity, description, image)
     cursor.execute(sql, val)
     db.commit()
-    print('Inserted: ', cursor.lastrowname, '\n')
+    print('Inserted: ', cursor.lastrowid, '\n')
     print(getAll())
+    return getAll()
 
 
 if __name__ == '__main__':
