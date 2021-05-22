@@ -38,3 +38,10 @@ Dependencies: (pip3 install _____)
 
 Gard fikse 15.05: 
 - Fikse slik at hvis man trykker på et bilde av fruktene så fetcher den info om den frukten fra databasen, med nye bilder også, alt i en pop-up
+
+Opprette alt så det funker med backend
+Opprette database
+Skrive om litt på backend
+Fetche på javascripts
+flere metoder på backend
+Lagre bestillinger

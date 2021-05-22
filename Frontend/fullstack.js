@@ -141,6 +141,7 @@ function createProductButton(event){
 }
 
 function addProduct(Product){
+    /*Fetche ett produckt*/
     var newProduct =  document.createElement('div')
     newProduct.classList.add('product')
     var listofproducts = document.getElementsByClassName('new-products')[0]
