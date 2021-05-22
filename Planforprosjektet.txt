@@ -45,3 +45,8 @@ Skrive om litt på backend
 Fetche på javascripts
 flere metoder på backend
 Lagre bestillinger
+
+DOCKER/CONTAINER FOR MAC:
+
+
+DOCKER/CONTAINER FOR LINUX:
