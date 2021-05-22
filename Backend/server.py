@@ -31,10 +31,6 @@ print(result)
 for id, name, price, quantity, img in result:
     print("ID: {}, Name: {}, Price: {}, Quantity: {}, Productimg: {}".format(id,name, price, quantity, img))
 
-@app.route('/form')
-def form():
-    return render_template('./index.html')
-
 # Product class
 class Product:
     def __init__(self, name, price, description, image):
@@ -58,6 +54,8 @@ def addProduct(name, price, description, image):
 
 
 app.run(host='localhost',port=5000)
+
+
 
 # MONGODB
 """
