@@ -1,12 +1,14 @@
 # MySQL
 
+from configparser import MAX_INTERPOLATION_DEPTH
 import re
 from flask import Flask, render_template, request
 import flask
+from flask.json import jsonify
 import mysql.connector
 from flask_mysqldb import MySQL
 
-app = flask.Flask(__name__, static_folder="/var/portefolio2/frontend",static_url_path="")
+app = flask.Flask(__name__, static_folder="/var/fullstack/frontend",static_url_path="")
 app.config["DEBUG"] = True
 
 """
@@ -37,9 +39,6 @@ print(result)
 for id, name, price, quantity, img in result:
     print("ID: {}, Name: {}, Price: {}, Quantity: {}, Productimg: {}".format(id,name, price, quantity, img))
 
-@app.route('/form')
-def form():
-    return render_template('./index.html')
 
 # Product class
 class Product:
@@ -50,11 +49,25 @@ class Product:
         self.image = image
 
 
+@app.route('/', defaults={'path': 'index.html'})
+@app.route('/<path>')
+def homepage(path):
+    return flask.send_from_directory('/var/fullstack/frontend', path) 
+
+
+
 # Method for getting a product from the database 
 @app.route('/webshop/products/get/<product_id>', methods=['GET'])
 def getProduct(product_id):
     # Finds and returns a document with specidic product_id
     return None
+
+@app.route('/webshop/products/getall', methods=['GET'])
+def getAll():    
+    cursor = db.cursor()
+    cursor.execute('SELECT * FROM products')
+    result = cursor.fetchall()
+    return flask.jsonify(result)   
     
 
 # Method for adding a product to the database
@@ -63,7 +76,12 @@ def addProduct(name, price, description, image):
    return None
 
 
-app.run(host='localhost',port=5000)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')
+    db.close()    
+
 
 # MONGODB
 """
