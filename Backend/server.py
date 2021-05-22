@@ -52,9 +52,14 @@ def homepage(path):
 # Method for getting a product from the database 
 @app.route('/webshop/get/<product_id>', methods=['GET'])
 def getProduct(product_id):
-    
-    return None
+    cursor = db.cursor()
+    sql = 'SELECT * FROM products WHERE productid = %s'
+    val = (product_id)
+    cursor.execute(sql, val)
+    result = cursor.fetchone()
+    return jsonify(result)
 
+# Method for returning a list of all products in the database
 @app.route('/webshop/getall', methods=['GET'])
 def getAll():    
     cursor = db.cursor()
