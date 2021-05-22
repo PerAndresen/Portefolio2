@@ -1,3 +1,24 @@
+# MySQL
+
+import flask
+import mysql.connector
+
+# Så enkelt fordi de er i samme docker nettverk, så vi burde få til det samme
+# Variables for everything needed to connect to the database
+user = 'admin'
+password= 'password'
+host = 'Her skal navn på databasen som du setter når den startes i docker(container)(35:30)'
+database = 'webshop_database'
+
+# Connect to the database
+db = mysql.connector.connect(user, password, host, database)
+
+# Prints everything from the table 'products'
+cursor = db.cursor()
+cursor.execute('SELECT * FROM products')
+result = cursor.fetchall()
+
+
 # MONGODB
 """
 import flask
