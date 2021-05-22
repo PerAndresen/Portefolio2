@@ -15,3 +15,6 @@ INSERT INTO products (productname,productprice,productquantity,productimage) VAL
 ('BANANA', 300, 50, "https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg"),
 ('APPLE',150, 35, "https://www.applesfromny.com/wp-content/uploads/2020/05/Jonagold_NYAS-Apples2.png"),
 ('ORANGE',500, 100,"https://riviste.newbusinessmedia.it/wp-content/uploads/sites/27/2013/12/Fotolia_11313277_M.jpg");
+
+CREATE USER 'adminstrator' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON * . * TO 'adminstrator'; 
