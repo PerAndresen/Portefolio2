@@ -48,3 +48,10 @@ Skrive om litt på backend
 Fetche på javascripts
 flere metoder på backend
 Lagre bestillinger
+
+
+
+Kode for docker:
+for backend: docker run -it --rm --name pyback --network sqlnetwork -p 5000:5000 -v $(pwd)/backend/server.py:/var/fullstack/server.py -v $(pwd)/frontend/:/var/fullstack/frontend -t python_backend python /var/fullstack/server.py
+
+for database: docker run -it --rm --name mysql1 --network sqlnetwork -e MYSQL_ROOT_PASSWORD=my-secret-pw -v $(pwd)/database:/docker-entrypoint-initdb.d mysql 
