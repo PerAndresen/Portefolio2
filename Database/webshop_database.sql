@@ -1,6 +1,7 @@
 CREATE DATABASE webshop_database;
 USE webshop_database;
 
+#Creating a table of products with different attributes
 CREATE TABLE products (
     productid INT unsigned NOT NULL AUTO_INCREMENT,
     productname VARCHAR(150) NOT NULL,
@@ -10,6 +11,7 @@ CREATE TABLE products (
     PRIMARY KEY (productid)
 )
 
+#Inserting the initial products into the table. 
 
 INSERT INTO products (productname,productprice,productquantity,productimage) VALUES
 ('BANANA', 300, 50, "https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg"),
