@@ -1,5 +1,6 @@
 # MySQL
 
+import re
 from flask import Flask, render_template, request
 import flask
 import mysql.connector
@@ -18,12 +19,21 @@ innhost = 'mysql1'
 inndatabase = 'webshop_database'
 
 # Connect to the database
-db = mysql.connector.connect(user=innuser, password=innpassword, host=innhost, database=inndatabase)
+db = mysql.connector.connect( user = innuser, password = innpassword, host = innhost, database = inndatabase)
 
 # Prints everything from the table 'products'
 cursor = db.cursor()
 cursor.execute('SELECT * FROM products')
 result = cursor.fetchall()
+
+print(result)
+
+for id, name, price, quantity, img in result:
+    print("ID: {}, Name: {}, Price: {}, Quantity: {}, Productimg: {}".format(id,name, price, quantity, img))
+
+@app.route('/form')
+def form():
+    return render_template('./index.html')
 
 # Product class
 class Product:
