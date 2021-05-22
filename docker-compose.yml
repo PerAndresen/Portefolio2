@@ -1,0 +1,21 @@
+version: '3.9'
+services: 
+    server:
+        container_name: backend-container
+        restart: always
+        build: ./backend/server.py
+        ports: 
+            -"8000:4000"
+        depends_on: 
+            -sql
+    
+    sql:
+        container_name: database-container
+        image: mysql:5.7
+        environment: 
+            MY_SQL_ROOT_PASSWORD: password
+            MYSQL_DATABASE: sql
+            MYSQL_USER: sql
+            MYSQL_PASSWORD: sql
+        volumes: 
+            -db_data:/var/lib/mysql
