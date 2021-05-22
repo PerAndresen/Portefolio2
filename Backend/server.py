@@ -53,10 +53,8 @@ def homepage(path):
 @app.route('/webshop/get/<product_id>', methods=['GET'])
 def getProduct(product_id):
     cursor = db.cursor()
-    sql = 'SELECT * FROM products WHERE productid = %s'
-    val = (product_id)
-    cursor.execute(sql, val)
-    result = cursor.fetchone()
+    cursor.execute('SELECT * FROM products WHERE productid = {}'.format(product_id))
+    result = cursor.fetchall()
     return jsonify(result)
 
 # Method for returning a list of all products in the database
