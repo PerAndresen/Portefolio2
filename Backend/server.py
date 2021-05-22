@@ -1,3 +1,5 @@
+# MONGODB
+"""
 import flask
 from pymongo import MongoClient
 import jsonpickle
@@ -63,3 +65,4 @@ app.run()
 #print('SJEKKER OM PROGRAMMET FUNKER SOM DET SKAL NÅ')
 #addProduct('TestProdukt',  69, 'Dette er et testprodukt for å teste om programmet funker', 'https://www.applesfromny.com/wp-content/uploads/2020/05/Jonagold_NYAS-Apples2.png')
 # {"_id": get_sequence("Food")}
+"""
