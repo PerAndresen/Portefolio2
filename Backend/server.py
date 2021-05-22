@@ -52,9 +52,8 @@ def homepage(path):
 # Method for getting a product from the database 
 @app.route('/webshop/get/<product_id>', methods=['GET'])
 def getProduct(product_id):
-    # Finds and returns a document with specidic product_id
+    
     return None
-
 
 @app.route('/webshop/getall', methods=['GET'])
 def getAll():    
@@ -73,9 +72,15 @@ def deleteProduct(product_id):
     return getAll()
 
 # Method for adding a product to the database
-@app.route('/webshop/products/add/<name>/<price>/<description>/<image>', methods=['GET', 'POST'])
-def addProduct(name, price, description, image):
-   return None
+@app.route('/webshop/add/<name>/<price>/<quantity>/<description>/<image>', methods=['GET', 'POST'])
+def addProduct(name, price, quantity, description, image):
+    cursor = db.cursor()
+    sql = 'INSERT INTO products (name, price, quantity, description, image) VALUES (%s, %s, %s, %s, %s)'
+    val = (name, price, quantity, description, image)
+    cursor.execute(sql, val)
+    db.commit()
+    print('Inserted: ', cursor.lastrowname, '\n')
+    print(getAll())
 
 
 if __name__ == '__main__':
