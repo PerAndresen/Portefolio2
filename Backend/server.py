@@ -6,18 +6,12 @@ from flask import Flask, render_template, request
 import flask
 from flask.json import jsonify
 import mysql.connector
-from flask_mysqldb import MySQL
+# dfrom flask_mysqldb import MySQL
 
 app = flask.Flask(__name__, static_folder="/var/fullstack/frontend",static_url_path="")
 app.config["DEBUG"] = True
 
-"""
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'root'
-app.config['MYSQL_DB'] = 'webshop_database'
-mysql = MySQL(app)
-"""
+
 
 # Så enkelt fordi de er i samme docker nettverk, så vi burde få til det samme
 # Variables for everything needed to connect to the database
@@ -38,7 +32,6 @@ print(result)
 
 for id, name, price, quantity, img in result:
     print("ID: {}, Name: {}, Price: {}, Quantity: {}, Productimg: {}".format(id,name, price, quantity, img))
-
 
 # Product class
 class Product:
@@ -81,6 +74,8 @@ def addProduct(name, price, description, image):
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
     db.close()    
+
+
 
 
 # MONGODB
