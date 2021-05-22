@@ -35,6 +35,7 @@ Dependencies: (pip3 install _____)
 - pymongo
 - jsonpickle
 - dnspython
+pip install mysql-connector-python
 
 Gard fikse 15.05: 
 - Fikse slik at hvis man trykker på et bilde av fruktene så fetcher den info om den frukten fra databasen, med nye bilder også, alt i en pop-up
