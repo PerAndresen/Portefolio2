@@ -145,12 +145,12 @@ function createProductButton(event){
        var productname = prompt("Please enter a product","Grapes")
        var price = prompt("Please enter a price",400)
        var quantity = prompt("Please enter a quantity",20)
-       var description = prompt("Please enter description: ","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non sollicitudin eros. Nunc ut augue lacinia, ultrices ipsum vel, viverra.")
+       var description = prompt("Please enter description: ","Grapesaredelicious")
        var picturesrc = prompt("Please enter an Image source of the product","https://image.sciencenorway.no/1438480.jpg?imageId=1438480&panow=0&panoh=0&panox=0&panoy=0&heightw=0&heighth=0&heightx=0&heighty=0&width=1200&height=630" )
        console.log(productname, price, description)
    }
 
-   newProduct = new Product(productname, price, quantity,description,picturesrc)
+   newProduct = new Product(productname, price, quantity, description, picturesrc)
 
    addProduct(newProduct)
    postProductToDB(newProduct)
@@ -160,7 +160,8 @@ function createProductButton(event){
 function postProductToDB(newProduct) {
     // Ha fetch POST her 
     const data = newProduct
-    fetch(`/webshop/add/${newProduct.productname}/${newProduct.productprice}/${newProduct.productquantity}/${newProduct.description}/${newProduct.picturesrc}`, {
+    fetch(`/webshop/add/${newProduct.productname}/${newProduct.productprice}/${newProduct.productquantity}
+    /${newProduct.description}/${newProduct.picturesrc}`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
