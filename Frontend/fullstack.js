@@ -199,11 +199,14 @@ function addProduct(Product){
     </select>
     <button type="button" class="btn shop-item-button">Add to cart</button>
     </fieldset>
+    <br>
+    <br>
 `
     newProduct.innerHTML = html
     console.log(newProduct)
     listofproducts.append(newProduct)
     productArray.push(Product)
+    ready()
 }
 
 function fetchProducts(data){
@@ -224,13 +227,11 @@ function fetchProducts(data){
             newProduct.productdescription = enkeltprodukt[4]
             newProduct.productImgSource = enkeltprodukt[5]
             productArray.push(newProduct)
+           
         }
-        
-        //productArray.push(newProduct);
+        addProduct(newProduct)
     }
-    for (var i = 0; i < productArray.length; i++) {
-       console.log(productArray[i])
-    }
+   
 }
 
 
