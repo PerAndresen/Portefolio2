@@ -160,14 +160,16 @@ function createProductButton(event){
 function postProductToDB(newProduct) {
     // Ha fetch POST her 
     const data = newProduct
-    fetch('/webshop/add/<name>/<price>/<quantity>/<description>/<image>', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+    fetch(`/webshop/add/${newProduct.productname}/${newProduct.productprice}/${newProduct.productquantity}/${newProduct.description}/${newProduct.picturesrc}`, {
+        method: "POST",
         body: JSON.stringify(data),
+        headers: {
+            "Content-Type" : "application/json; charset=UTF-8",
+        }
+      
     })
     .then(response => response.json())
+    .then(json => console.log(json))
     .then(data => {
         console.log('Success:', data);
     })
