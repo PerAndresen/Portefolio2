@@ -42,6 +42,15 @@ function Product(productid, productname, productprice, productquantity, productd
     this.productImgSource = productImgSource
 }
 
+function Product(productname, productprice, productquantity, productdescription, productImgSource){
+    this.productname = productname
+    this.productprice = productprice
+    this.productquantity = productquantity
+    this.productdescription = productdescription
+    this.productImgSource = productImgSource
+}
+
+
 function addToCartClicked(event){
     /* 
     Knappfunksjon ved hvert produkt for å legge det til i handlelisten
@@ -134,20 +143,38 @@ function createProductButton(event){
     */
    if(event){
        var productname = prompt("Please enter a product","Grapes")
-       var price = prompt("Please enter a price","400")
-       var quantity = prompt("Please enter a quantity","20")
+       var price = prompt("Please enter a price",400)
+       var quantity = prompt("Please enter a quantity",20)
        var description = prompt("Please enter description: ","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non sollicitudin eros. Nunc ut augue lacinia, ultrices ipsum vel, viverra.")
        var picturesrc = prompt("Please enter an Image source of the product","https://image.sciencenorway.no/1438480.jpg?imageId=1438480&panow=0&panoh=0&panox=0&panoy=0&heightw=0&heighth=0&heightx=0&heighty=0&width=1200&height=630" )
        console.log(productname, price, description)
    }
-   newProduct = new Product(4,productname,price,quantity,description,picturesrc)
+
+   newProduct = new Product(productname, price, quantity,description,picturesrc)
 
    addProduct(newProduct)
+   postProductToDB(newProduct)
    ready()
 }
 
-function postProductToDB() {
+function postProductToDB(newProduct) {
     // Ha fetch POST her 
+    const data = newProduct
+    fetch('/webshop/add/<name>/<price>/<quantity>/<description>/<image>', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch(error => {
+        console.error('error:', error);
+    });
+
 }
 
 function addProduct(Product){
@@ -160,7 +187,6 @@ function addProduct(Product){
     <br>
     <br>
     <button type="button" class="btn remove-product-button">Remove product</button>
-    <button></button>
     <img data-modal-target="#modal3" alt="Picture of ${Product.productname}" src="${Product.productImgSource}">
     <div class='modal' id='modal3'>
         <div class='modal-header'>
