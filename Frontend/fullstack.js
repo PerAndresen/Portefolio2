@@ -30,6 +30,18 @@ function ready(){
 
 }
 
+var productArray = []
+
+//Constructor for Product
+function Product(productid, productname, productprice, productquantity, productdescription, productImgSource){
+    this.productid = productid
+    this.productname = productname
+    this.productprice = productprice
+    this.productquantity = productquantity
+    this.productdescription = productdescription
+    this.productImgSource = productImgSource
+}
+
 function addToCartClicked(event){
     /* 
     Knappfunksjon ved hvert produkt for å legge det til i handlelisten
@@ -128,17 +140,14 @@ function createProductButton(event){
        var picturesrc = prompt("Please enter an Image source of the product","https://image.sciencenorway.no/1438480.jpg?imageId=1438480&panow=0&panoh=0&panox=0&panoy=0&heightw=0&heighth=0&heightx=0&heighty=0&width=1200&height=630" )
        console.log(productname, price, description)
    }
-   newProduct = new Product(productname,price,quantity,description,picturesrc)
-   fetch('http://127.0.0.1:5000/webshop/products/add/<name>/<price>/<description>/<image>', {
-    method: 'POST',
-    body: JSON.stringify(newProduct),
-    headers: {"Content-type": "application/json; charset=UTF-8"}
-   })
-   .then(response => response.json())
-   .then(json => console.log(json))
-   .catch(err => console.log(err))
+   newProduct = new Product(4,productname,price,quantity,description,picturesrc)
+
    addProduct(newProduct)
    ready()
+}
+
+function postProductToDB() {
+    // Ha fetch POST her 
 }
 
 function addProduct(Product){
@@ -197,19 +206,30 @@ function addProduct(Product){
     productArray.push(Product)
 }
 
-function fetchProducts(Product){
+function fetchProducts(data){
     /*Fetche ett produckt*/
-    console.log(Product)
-    var enkeltprodukt= ""
-    var enkeltElement=""
+    console.log(data)
+    var enkeltprodukt = ""
+    var enkeltElement = ""
+    var newProduct = new Product()
     /*finne en måte å iterere gjennom arrayet på*/
-    for(var i=0; i < Product.length; i++){
-        enkeltprodukt = Product[i]
+    for(var i=0; i < data.length; i++){
+        enkeltprodukt = data[i]
         console.log(enkeltprodukt)
-        for(var j=0; j<enkeltprodukt.length; j++){
-            enkeltElement = enkeltprodukt[j]
-            console.log(enkeltElement)
+        for(var j=0; j < enkeltprodukt.length; j++){
+            newProduct.productid = enkeltprodukt[0]
+            newProduct.productname = enkeltprodukt[1]
+            newProduct.productprice = enkeltprodukt[2]
+            newProduct.productquantity = enkeltprodukt[3]
+            newProduct.productdescription = enkeltprodukt[4]
+            newProduct.productImgSource = enkeltprodukt[5]
+            productArray.push(newProduct)
         }
+        
+        //productArray.push(newProduct);
+    }
+    for (var i = 0; i < productArray.length; i++) {
+       console.log(productArray[i])
     }
 }
 
@@ -301,18 +321,8 @@ function loginAdmin(event){
     
 }
 
-/*Constructor for Product*/
 
-function Product(productname, productprice, productquantity, productdescription, productImgSource){
-    this.productname = productname
-    this.productprice = productprice
-    this.productquantity = productquantity
-    this.productdescription = productdescription
-    this.productImgSource = productImgSource
-}
-
-var productArray = []
-
-fetch('./webshop/getall')
+fetch('/webshop/getall')
     .then (response => response.json())
     .then (data => fetchProducts(data));
+    
