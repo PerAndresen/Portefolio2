@@ -1,47 +1,31 @@
 # MySQL
 
-from configparser import MAX_INTERPOLATION_DEPTH
 import re
 from flask import Flask, render_template, request
 import flask
 from flask.json import jsonify
 import mysql.connector
-# dfrom flask_mysqldb import MySQL
 
 app = flask.Flask(__name__, static_folder="/var/fullstack/frontend",static_url_path="")
 app.config["DEBUG"] = True
 
-
-
-# Så enkelt fordi de er i samme docker nettverk, så vi burde få til det samme
 # Variables for everything needed to connect to the database
 innuser = 'admin'
 innpassword= 'password'
 innhost = 'mysql1'
 inndatabase = 'webshop_database'
 
-# Connect to the database
+# Connect to the database using mysql.connector
 db = mysql.connector.connect( user = innuser, password = innpassword, host = innhost, database = inndatabase)
 
-# Prints everything from the table 'products'
+# Prints everything from the table 'products' for debugging
 cursor = db.cursor()
 cursor.execute('SELECT * FROM products')
 result = cursor.fetchall()
 
 print(result)
-"""
-for id, name, price, quantity, img in result:
-    print("ID: {}, Name: {}, Price: {}, Quantity: {}, Productimg: {}".format(id,name, price, quantity, img))
-"""
-# Product class
-class Product:
-    def __init__(self, name, price, description, image):
-        self.name = name
-        self.price = price
-        self.description = description
-        self.image = image
 
-
+# Method for showing the the webshop with the specified route
 @app.route('/', defaults={'path': 'index.html'})
 @app.route('/<path>')
 def homepage(path):
@@ -87,6 +71,7 @@ def addProduct(name, price, quantity, description, image):
     sql = 'INSERT INTO products (productname, productprice, productquantity, productdescription, productimage) VALUES (%s, %s, %s, %s, %s)'
     val = (name, price, quantity, description, image)
     cursor.execute(sql, val)
+    # Commit the changes and actually update the database
     db.commit()
     print('Inserted: ', cursor.lastrowid, '\n')
     print(getAll())

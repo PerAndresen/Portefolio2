@@ -19,7 +19,9 @@ INSERT INTO products (productname, productprice, productquantity, productdescrip
 ('APPLE',150, 35,'APPLES TASTE LIKE STRAWBERRYS', "https://www.applesfromny.com/wp-content/uploads/2020/05/Jonagold_NYAS-Apples2.png"),
 ('ORANGE',500, 100,'ORANGE HEY ORANGE',"https://riviste.newbusinessmedia.it/wp-content/uploads/sites/27/2013/12/Fotolia_11313277_M.jpg");
 
+#For debugging
 SELECT * FROM products;
 
+#Creating a user with all privileges granted
 CREATE USER 'admin' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON * . * TO 'admin';
