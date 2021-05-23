@@ -145,23 +145,21 @@ function createProductButton(event){
        var productname = prompt("Please enter a product","Grapes")
        var price = prompt("Please enter a price",400)
        var quantity = prompt("Please enter a quantity",20)
-       var description = prompt("Please enter description: ","Grapesaredelicious")
+       var description = prompt("Please enter description: ","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non sollicitudin eros. Nunc ut augue lacinia, ultrices ipsum vel, viverra.")
        var picturesrc = prompt("Please enter an Image source of the product","https://image.sciencenorway.no/1438480.jpg?imageId=1438480&panow=0&panoh=0&panox=0&panoy=0&heightw=0&heighth=0&heightx=0&heighty=0&width=1200&height=630" )
        console.log(productname, price, description)
    }
 
-   newProduct = new Product(productname, price, quantity, description, picturesrc)
+   newProduct = new Product(productname, price, quantity,description,picturesrc)
 
    addProduct(newProduct)
    postProductToDB(newProduct)
    ready()
 }
 
-function postProductToDB(newProduct) {
-    // Ha fetch POST her 
+function postProductToDB(newProduct) { 
     const data = newProduct
-    fetch(`/webshop/add/${newProduct.productname}/${newProduct.productprice}/${newProduct.productquantity}
-    /${newProduct.description}/${newProduct.picturesrc}`, {
+    fetch(`/webshop/add/${newProduct.productname}/${newProduct.productprice}/${newProduct.productquantity}/${newProduct.description}/${newProduct.picturesrc}`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -177,6 +175,32 @@ function postProductToDB(newProduct) {
     .catch(error => {
         console.error('error:', error);
     });
+
+}
+
+function deleteProductFromDB(id) {
+    fetch(`/webshop/delete/${id}`), {
+        method: "DELETE",
+        body: JSON.stringify(id),
+        headers: {
+            "Content-Type" : "application/json; charset=UTF-8",
+        }
+    }
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch(error => {
+        console.error('error:', error);
+    });
+}
+
+function getProductIdFromDB(name) {
+    fetch(`/webshop/getId/${name}`)
+        .then(response => response.json())
+        .then(data => deleteProductFromDB(data))
+
 
 }
 
@@ -268,7 +292,11 @@ function RemoveItem(event){
     /* ha en removeknapp ved hvert produkt, som admin har tilgjengelig*/
     var button = event.target
     var productin = button.parentElement.parentElement
+    var node = productin.getElementsByClassName('productname')[0]
+    var nodetext = node.innerText
     $(productin).remove();
+    getProductIdFromDB(nodetext)
+    console.log(nodetext)
 }
 
 function clearCart(){

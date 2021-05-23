@@ -47,7 +47,13 @@ class Product:
 def homepage(path):
     return flask.send_from_directory('/var/fullstack/frontend', path) 
 
-
+# Method for getting the product id based on the name
+@app.route('/webshop/getId/<name>', methods=['GET'])
+def getProductId(name):
+    cursor = db.cursor()
+    cursor.execute('SELECT productid FROM products WHERE productname = {}'.format(name))
+    result = cursor.fetchall()
+    return jsonify(result)
 
 # Method for getting a product from the database 
 @app.route('/webshop/get/<product_id>', methods=['GET'])
