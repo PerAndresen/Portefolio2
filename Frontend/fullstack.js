@@ -121,13 +121,14 @@ function createProductButton(event){
      Skal også være hidden, kun synlig for admin
     */
    if(event){
-       var productname = prompt("Please enter a product","")
-       var price = prompt("Please enter a price","")
+       var productname = prompt("Please enter a product","Grapes")
+       var price = prompt("Please enter a price","400")
+       var quantity = prompt("Please enter a quantity","20")
        var description = prompt("Please enter description: ","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non sollicitudin eros. Nunc ut augue lacinia, ultrices ipsum vel, viverra.")
        var picturesrc = prompt("Please enter an Image source of the product","https://image.sciencenorway.no/1438480.jpg?imageId=1438480&panow=0&panoh=0&panox=0&panoy=0&heightw=0&heighth=0&heightx=0&heighty=0&width=1200&height=630" )
        console.log(productname, price, description)
    }
-   newProduct = new Product(productname,price,description,picturesrc)
+   newProduct = new Product(productname,price,quantity,description,picturesrc)
    fetch('http://127.0.0.1:5000/webshop/products/add/<name>/<price>/<description>/<image>', {
     method: 'POST',
     body: JSON.stringify(newProduct),
@@ -141,7 +142,6 @@ function createProductButton(event){
 }
 
 function addProduct(Product){
-    /*Fetche ett produckt*/
     var newProduct =  document.createElement('div')
     newProduct.classList.add('product')
     var listofproducts = document.getElementsByClassName('new-products')[0]
@@ -196,6 +196,23 @@ function addProduct(Product){
     listofproducts.append(newProduct)
     productArray.push(Product)
 }
+
+function fetchProducts(Product){
+    /*Fetche ett produckt*/
+    console.log(Product)
+    var enkeltprodukt= ""
+    var enkeltElement=""
+    /*finne en måte å iterere gjennom arrayet på*/
+    for(var i=0; i < Product.length; i++){
+        enkeltprodukt = Product[i]
+        console.log(enkeltprodukt)
+        for(var j=0; j<enkeltprodukt.length; j++){
+            enkeltElement = enkeltprodukt[j]
+            console.log(enkeltElement)
+        }
+    }
+}
+
 
 function RemoveItem(event){
     /* ha en removeknapp ved hvert produkt, som admin har tilgjengelig*/
@@ -286,11 +303,16 @@ function loginAdmin(event){
 
 /*Constructor for Product*/
 
-function Product(productname, productprice, productdescription, productImgSource){
+function Product(productname, productprice, productquantity, productdescription, productImgSource){
     this.productname = productname
     this.productprice = productprice
+    this.productquantity = productquantity
     this.productdescription = productdescription
     this.productImgSource = productImgSource
 }
 
 var productArray = []
+
+fetch('./webshop/getall')
+    .then (response => response.json())
+    .then (data => fetchProducts(data));
