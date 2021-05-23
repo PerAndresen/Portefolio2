@@ -14,7 +14,7 @@ CREATE TABLE products (
 
 #Inserting the initial products into the table. 
 
-INSERT INTO products (productname, productprice, productquantity,productdescription, productimage) VALUES
+INSERT INTO products (productname, productprice, productquantity, productdescription, productimage) VALUES
 ('BANANA', 300, 50, 'BANANAS ARE GOOOD', "https://upload.wikimedia.org/wikipedia/commons/8/8a/Banana-Single.jpg"),
 ('APPLE',150, 35,'APPLES TASTE LIKE STRAWBERRYS', "https://www.applesfromny.com/wp-content/uploads/2020/05/Jonagold_NYAS-Apples2.png"),
 ('ORANGE',500, 100,'ORANGE HEY ORANGE',"https://riviste.newbusinessmedia.it/wp-content/uploads/sites/27/2013/12/Fotolia_11313277_M.jpg");
