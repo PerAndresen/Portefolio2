@@ -145,21 +145,22 @@ function createProductButton(event){
        var productname = prompt("Please enter a product","Grapes")
        var price = prompt("Please enter a price",400)
        var quantity = prompt("Please enter a quantity",20)
-       var description = prompt("Please enter description: ","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse non sollicitudin eros. Nunc ut augue lacinia, ultrices ipsum vel, viverra.")
+       var description = prompt("Please enter description: ","Grapesaredelicious")
        var picturesrc = prompt("Please enter an Image source of the product","https://image.sciencenorway.no/1438480.jpg?imageId=1438480&panow=0&panoh=0&panox=0&panoy=0&heightw=0&heighth=0&heightx=0&heighty=0&width=1200&height=630" )
-       console.log(productname, price, description)
    }
 
-   newProduct = new Product(productname, price, quantity,description,picturesrc)
+   newProduct = new Product(productname, price, quantity, description, picturesrc)
 
    addProduct(newProduct)
    postProductToDB(newProduct)
    ready()
 }
 
-function postProductToDB(newProduct) { 
+function postProductToDB(newProduct) {
+    // Ha fetch POST her 
     const data = newProduct
-    fetch(`/webshop/add/${newProduct.productname}/${newProduct.productprice}/${newProduct.productquantity}/${newProduct.description}/${newProduct.picturesrc}`, {
+    fetch(`/webshop/add/${newProduct.productname}/${newProduct.productprice}/${newProduct.productquantity}
+    /${newProduct.description}/${newProduct.picturesrc}`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -178,32 +179,6 @@ function postProductToDB(newProduct) {
 
 }
 
-function deleteProductFromDB(id) {
-    fetch(`/webshop/delete/${id}`), {
-        method: "DELETE",
-        body: JSON.stringify(id),
-        headers: {
-            "Content-Type" : "application/json; charset=UTF-8",
-        }
-    }
-    .then(response => response.json())
-    .then(json => console.log(json))
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch(error => {
-        console.error('error:', error);
-    });
-}
-
-function getProductIdFromDB(name) {
-    fetch(`/webshop/getId/${name}`)
-        .then(response => response.json())
-        .then(data => deleteProductFromDB(data))
-
-
-}
-
 function addProduct(Product){
     var newProduct =  document.createElement('div')
     newProduct.classList.add('product')
@@ -213,7 +188,7 @@ function addProduct(Product){
     <span class="productname">${Product.productname}</span>
     <br>
     <br>
-    <button type="button" class="btn remove-product-button">Remove product</button>
+    <button type="button" class="btn remove-product-button" style="visibility : hidden">Remove product</button>
     <img data-modal-target="#modal3" alt="Picture of ${Product.productname}" src="${Product.productImgSource}">
     <div class='modal' id='modal3'>
         <div class='modal-header'>
@@ -260,13 +235,13 @@ function addProduct(Product){
     listofproducts.append(newProduct)
     productArray.push(Product)
     ready()
+    
 }
 
 function fetchProducts(data){
     /*Fetche ett produckt*/
     console.log(data)
     var enkeltprodukt = ""
-    var enkeltElement = ""
     var newProduct = new Product()
     /*finne en måte å iterere gjennom arrayet på*/
     for(var i=0; i < data.length; i++){
@@ -292,11 +267,10 @@ function RemoveItem(event){
     /* ha en removeknapp ved hvert produkt, som admin har tilgjengelig*/
     var button = event.target
     var productin = button.parentElement.parentElement
-    var node = productin.getElementsByClassName('productname')[0]
-    var nodetext = node.innerText
-    $(productin).remove();
-    getProductIdFromDB(nodetext)
+    var node=productin.getElementsByClassName('productname')[0]
+    var nodetext=node.innerText
     console.log(nodetext)
+    $(productin).remove();
 }
 
 function clearCart(){
@@ -339,7 +313,7 @@ function adminAddProduct(){
 function makeVisible(){
     /* Makes the buttons visible when logged in as admin*/
     document.getElementsByClassName('add-product-button')[0].style.visibility = "visible"
-    for(var i = 0; i < 3; i++){
+    for(var i = 0; i < productArray.length; i++){
         document.getElementsByClassName('remove-product-button')[i].style.visibility = "visible"
     }
     
@@ -383,4 +357,3 @@ function loginAdmin(event){
 fetch('/webshop/getall')
     .then (response => response.json())
     .then (data => fetchProducts(data));
-    
