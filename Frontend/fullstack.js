@@ -11,6 +11,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 /*IMPORTERER JQUERY*/
 function ready(){
+    //Loads when the page loads, every buttons function is ready to go
     var addToCartButtons = document.getElementsByClassName('shop-item-button')
     for(var i = 0; i < addToCartButtons.length; i++){
         var button = addToCartButtons[i]
@@ -91,9 +92,7 @@ function Product(productname, productprice, productquantity, productdescription,
 
 function addToCartClicked(event){
     /* 
-    Knappfunksjon ved hvert produkt for å legge det til i handlelisten
-    Tar inn det som er tilhørende objekt
-    Lagre dette inn i APIet?
+    Button function for adding item to cart. Pure javascript, not in contact with backend
     */
     var button = event.target
     var productin = button.parentElement /* finner diven til produktet som knappen finner seg i*/
@@ -128,6 +127,7 @@ function showMoreInformation() {
 }
 
 function addItemToCart(productname, productquantity, sum) {
+    //Function for adding item to cart
     var cartLinje = document.createElement('div')
     cartLinje.classList.add('cart-row')
     var cartitems = document.getElementsByClassName('list-of-items')[0]  
@@ -141,9 +141,11 @@ function addItemToCart(productname, productquantity, sum) {
 
 
 function createProductButton(event){
-    /*lage en funksjon som lager ett produkt.
-     Trykker på en knapp, så dukker det opp ett input vindu. Med input for produkt, pris, beskrivelse og bilde. 
-     Skal også være hidden, kun synlig for admin
+    /*
+    Function for when pressing the create product button, dialouge windows will appear,
+    they have defaults as well, for when the user dont give you any input
+    Creates a new product with these input
+    sending these to various methods such as sending it to the database and adding it to the html
     */
    if(event){
        var productname = prompt("Please enter a product","Grapes")
@@ -161,7 +163,8 @@ function createProductButton(event){
 }
 
 function postProductToDB(newProduct) {
-    // Ha fetch POST her 
+    // sends the product that we create in createProductButton to the server.py through the api
+    //Using fetch 
     const data = newProduct
     fetch(`/webshop/add/${newProduct.productname}/${newProduct.productprice}/${newProduct.productquantity}
     /${newProduct.description}/${newProduct.picturesrc}`, {
@@ -206,6 +209,7 @@ function getProductIdFromDB(name) {
         .then(data => deleteProductFromDB(data))
 }*/
 function deleteProductFromDB(name) {
+    //Our try of an deletemethod through fetch
     fetch(`/webshop/delete/${name}`, {
         method: "DELETE",
         body: JSON.stringify(name),
@@ -224,6 +228,7 @@ function deleteProductFromDB(name) {
 }
 
 function addProduct(Product){
+    //Adds a product to the website through creating a  new dic and inserting it to the html
     var newProduct =  document.createElement('div')
     newProduct.classList.add('product')
     var listofproducts = document.getElementsByClassName('new-products')[0]
@@ -283,11 +288,11 @@ function addProduct(Product){
 }
 
 function fetchProducts(data){
-    /*Fetche ett produckt*/
+    /*Fetcing a product*/
     console.log(data)
     var enkeltprodukt = ""
     var newProduct = new Product()
-    /*finne en måte å iterere gjennom arrayet på*/
+    /*Iterates through the array asserting values to a locally stored element of type product*/
     for(var i=0; i < data.length; i++){
         enkeltprodukt = data[i]
         console.log(enkeltprodukt)
@@ -308,7 +313,7 @@ function fetchProducts(data){
 
 
 function RemoveItem(event){
-    /* ha en removeknapp ved hvert produkt, som admin har tilgjengelig*/
+    /* Removing an item from the html*/
     var button = event.target
     var productin = button.parentElement.parentElement
     //var node = productin.getElementsByClassName('productname')[0]
@@ -319,9 +324,7 @@ function RemoveItem(event){
 }
 
 function clearCart(){
-    /* Sletter alt fra handlelisten
-    kaller på apiet?
-    Tømmer listen*/
+    /* Clears the cart*/
     alert('Removing all products from cart')
     var listofitemsincart = document.getElementsByClassName('list-of-items')[0]
     while (listofitemsincart.hasChildNodes()){
@@ -331,6 +334,7 @@ function clearCart(){
 }
 
 function proceedToCheckout() {
+    //Button method when pressing proceed to checkout, opening up an alert
     alert('CONGRATULATIONS! You get everything for FREE! HAPPY BIRTHDAY!')
     var listofitemsincart = document.getElementsByClassName('list-of-items')[0]
     while (listofitemsincart.hasChildNodes()){
@@ -340,6 +344,8 @@ function proceedToCheckout() {
 }
 
 function sumCart(){
+    //Function for having a total in cart which changes dynamically
+    //Finds the sum of each product added in cart using rows and list of items and adding these.
     var listofitemsincart = document.getElementsByClassName('list-of-items')[0]    
     var lineInCart = listofitemsincart.getElementsByClassName('cart-row')
     var total = 0
@@ -354,15 +360,6 @@ function sumCart(){
     document.getElementsByClassName('total-sum')[0].innerText = '$' + total
 }
 
-function adminAddProduct(){
-    /*Knappefunksjon som kun skal være tilgjengelig for admin
-    Som legger til ett nytt produkt på listen
-    Requirements for det som blir lagt til:
-    Produktnavn, Kort beskrivelse, lang beskrivelse, photo, ?pris?
-    Setter inn ett stockbilde hvis ingenting blir providet
-    Da må knappene være usynlige vanligvis, 
-    */
-}
 
 function makeVisible(){
     /* Makes the buttons visible when logged in as admin*/
@@ -381,9 +378,6 @@ function makeInvisible(){
     }
     
 }
-
-
-
 
 
 function loginAdmin(event){

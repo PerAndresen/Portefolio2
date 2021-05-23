@@ -1,0 +1,64 @@
+README
+
+Group Participants:
+Gard Åckerstrøm Aasness, s339557
+Per Bergsjø Andresen, s344075
+
+We chose to assignment 1 webshop.
+
+This assignment uses sqlnetwork which can be created by the following command:
+
+$ docker network create sqlnetwork
+
+We have implemented a MySQL database which can be run on Docker with the following command:
+
+$ docker run -it --rm --name mysql1 --network sqlnetwork -e MYSQL_ROOT_PASSWORD=my-secret-pw -v $(pwd)/database:/docker-entrypoint-initdb.d mysql 
+
+To create a backend image/building our backend in our project you need to run the following command, 
+this will create a backend with the Dockerfile, requirements.txt and server.py when you are in the Portefolio2 directory:
+
+$ docker build -t python_backend ./Backend
+
+After the image is created you can now run the backend connecting with the frontend with the following command:
+
+$ docker run -it --rm --name pyback --network sqlnetwork -p 5000:5000 -v $(pwd)/backend/server.py:/var/fullstack/server.py -v $(pwd)/frontend/:/var/fullstack/frontend -t python_backend python /var/fullstack/server.py
+
+We have implemented our own original solution, with some inspiration from course material and course lectures.
+
+How our solution works:
+
+Frontend:
+
+When you go to http://localhost:5000/
+You will be directed to our Webshop/indexpage
+There you will see a list of products, which are fetched from our MySQL database using fetch in the Javascript file.
+We had the first product not fetched from the database, but as part of the HTML. For our solution to work.
+
+You can add all the products to the cart which is situated in the bottom of the page.
+The cart changes dynamically when adding products, the product gets put in with the quantity and price and the totalprice automatically changes.
+
+Clearcart button:
+Removes all items from the cart
+Making it blank and possible to fill in again. 
+
+Proceed to checkoutbutton:
+A window prompt will appear that tells you that you get all the products for free. And clears the cart.
+
+
+
+Admin rights:
+If you click on the log in as admin button, you get certain privileges:
+You can add a new product, which asks for your input through prompts, if nothing is put in, sample data will be put in instead.
+You can also remove a product from the webpage, removing a product will only make it go away from the frontend. But we struggled with 
+removing this from the database. We have an attempt of a fetch DeleteFromDB in fullstack.js
+
+
+
+
+
+Backend(server.py):
+
+We have created the following methods updating the database: getting all the products, adding a product,
+deleting a product, 
+
+
