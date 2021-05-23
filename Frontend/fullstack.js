@@ -18,6 +18,7 @@ function ready(){
     }
 
     document.getElementsByClassName('clear-items-button')[0].addEventListener('click', clearCart)
+    document.getElementsByClassName('checkout-button')[0].addEventListener('click', proceedToCheckout)
     
     var removeProductButtons = document.getElementsByClassName('remove-product-button')
     for(var i = 0; i <removeProductButtons.length; i++){
@@ -27,6 +28,43 @@ function ready(){
 
     document.getElementsByClassName('add-product-button')[0].addEventListener('click', createProductButton)
     document.getElementsByClassName('admin-button')[0].addEventListener('click', loginAdmin)
+
+    const openModalButtons = document.querySelectorAll('[data-modal-target]')
+const closeModalButtons = document.querySelectorAll('[data-close-button]')
+const overlay = document.getElementById('overlay')
+
+openModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = document.querySelector(button.dataset.modalTarget)
+        openModal(modal)
+    })
+})
+
+overlay.addEventListener('click', () => {
+    const modals = document.querySelectorAll('.modal.active')
+    modals.forEach( modal => {
+        closeModal(modal) 
+    })
+})
+
+closeModalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const modal = button.closest('.modal')
+        closeModal(modal)
+    })
+})
+
+function openModal(modal) {
+    if (modal == null) return
+    modal.classList.add('active')
+    overlay.classList.add('active')
+}
+
+function closeModal(modal) {
+    if (modal == null) return
+    modal.classList.remove('active')
+    overlay.classList.remove('active')
+}
 
 }
 
@@ -75,42 +113,7 @@ function addToCartClicked(event){
     sumCart()
 }
 
-const openModalButtons = document.querySelectorAll('[data-modal-target]')
-const closeModalButtons = document.querySelectorAll('[data-close-button]')
-const overlay = document.getElementById('overlay')
 
-openModalButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const modal = document.querySelector(button.dataset.modalTarget)
-        openModal(modal)
-    })
-})
-
-overlay.addEventListener('click', () => {
-    const modals = document.querySelectorAll('.modal.active')
-    modals.forEach( modal => {
-        closeModal(modal) 
-    })
-})
-
-closeModalButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const modal = button.closest('.modal')
-        closeModal(modal)
-    })
-})
-
-function openModal(modal) {
-    if (modal == null) return
-    modal.classList.add('active')
-    overlay.classList.add('active')
-}
-
-function closeModal(modal) {
-    if (modal == null) return
-    modal.classList.remove('active')
-    overlay.classList.remove('active')
-}
 
 // Function to give more pictures/information about a product(get from database)
 function showMoreInformation() {
@@ -131,6 +134,7 @@ function addItemToCart(productname, productquantity, sum) {
     var ut = '<span class="product-name-table">'+productname+'</span>    <span class="product-quantity-table">'+productquantity+'</span>    <span class="product-sum-table">'+sum+'</span>'
     cartLinje.innerHTML = ut
     cartitems.append(cartLinje)
+    
 }
 
 
@@ -175,10 +179,9 @@ function postProductToDB(newProduct) {
     .catch(error => {
         console.error('error:', error);
     });
-
 }
 
-function deleteProductFromDB(id) {
+/*function deleteProductFromDB(id) {
     fetch(`/webshop/delete/${id}`), {
         method: "DELETE",
         body: JSON.stringify(id),
@@ -200,8 +203,23 @@ function getProductIdFromDB(name) {
     fetch(`/webshop/getId/${name}`)
         .then(response => response.json())
         .then(data => deleteProductFromDB(data))
-
-
+}*/
+function deleteProductFromDB(name) {
+    fetch(`/webshop/delete/${name}`, {
+        method: "DELETE",
+        body: JSON.stringify(name),
+        headers: {
+            "Content-Type" : "application/json; charset=UTF-8",
+        }
+    })
+    .then(response => response.json())
+    .then(json => console.log(json))
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch(error => {
+        console.error('error:', error);
+    });
 }
 
 function addProduct(Product){
@@ -292,11 +310,11 @@ function RemoveItem(event){
     /* ha en removeknapp ved hvert produkt, som admin har tilgjengelig*/
     var button = event.target
     var productin = button.parentElement.parentElement
-    var node = productin.getElementsByClassName('productname')[0]
-    var nodetext = node.innerText
+    //var node = productin.getElementsByClassName('productname')[0]
+    //var nodetext = node.innerText
     $(productin).remove();
-    getProductIdFromDB(nodetext)
-    console.log(nodetext)
+    //deleteProductFromDB(nodetext)
+    //console.log(nodetext)
 }
 
 function clearCart(){
@@ -304,6 +322,15 @@ function clearCart(){
     kaller på apiet?
     Tømmer listen*/
     alert('Removing all products from cart')
+    var listofitemsincart = document.getElementsByClassName('list-of-items')[0]
+    while (listofitemsincart.hasChildNodes()){
+        listofitemsincart.removeChild(listofitemsincart.firstChild)
+    }
+    sumCart()
+}
+
+function proceedToCheckout() {
+    alert('CONGRATULATIONS! You get everything for FREE! HAPPY BIRTHDAY!')
     var listofitemsincart = document.getElementsByClassName('list-of-items')[0]
     while (listofitemsincart.hasChildNodes()){
         listofitemsincart.removeChild(listofitemsincart.firstChild)
